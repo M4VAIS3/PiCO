@@ -19,10 +19,13 @@ PiCO adalah aplikasi web untuk mengompresi gambar menggunakan algoritma kompresi
 
 ## 🛠️ Tech Stack
 
--> Frontend: HTML, CSS, Vanilla JavaScript
--> Backend: Python, Flask, Pillow (PIL)
--> Storage: IndexedDB
--> Integration: REST API, JSON, Base64
+*Frontend*
+- HTML, CSS, Vanilla JavaScript
+- IndexedDB
+
+*Backend*
+- Python, Flask, Pillow (PIL)
+- REST API, JSON, Base64
 
 ---
 
@@ -37,9 +40,9 @@ PiCO menggunakan tiga tahap kompresi:
 ---
 
 ## 📁 Struktur Project
-
+```
 pico/
-├── app.py              # Backend Flask API
+├── PiCO.py              # Backend Flask API
 ├── requirements.txt    # Python dependencies
 ├── index.html          # Halaman upload
 ├── compress.html       # Halaman setting kompresi
@@ -53,7 +56,7 @@ pico/
 ├── loading.css         # Styling loading page
 ├── result.css          # Styling result page
 └── assets/             # Gambar & aset statis
-
+```
 ---
 
 ## 🚀 Cara Menjalankan (Local)
@@ -64,7 +67,7 @@ pico/
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/username/pico.git
+git clone https://github.com/M4VAIS3/PiCO.git
 cd pico
 ```
 
@@ -95,7 +98,7 @@ Cek status: `http://localhost:5000/api/health`
 ```bash
 python -m http.server 8000
 
-# Atau bisa juga menggunakan opsi Live Server dengan cara klik kanan index.html → Open with Live Server
+# Atau bisa juga menggunakan opsi live server dengan cara klik kanan index.html → Open with Live Server
 ```
 Buka browser: `http://localhost:8000`
 
