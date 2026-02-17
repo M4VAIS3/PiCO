@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>PiCo - Kompres Foto</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <header>
+            <img src="assets/Logo PiCO.png" alt="Logo PiCO" class="logo-img">
+        </header>
+    </header>
+
+    <main>
+        <div class="upload-box">
+            <div class="drop-area" id="dropArea">
+                <img src="assets/image upload.png" alt="Upload Icon" class="upload-icon">
+            
+                <p class="upload-text">Seret atau lepas Foto kamu di sini</p>
+                <p class="or-text">atau</p>
+            
+                <button id="uploadBtn">Pilih Foto</button>
+            
+                <input 
+                    type="file" 
+                    id="fileInput" 
+                    accept=".jpg,.jpeg,.png"
+                    hidden
+                >
+            </div>
+            <p id="fileInfo"></p>
+        </div>
+    </main>
+
+    <p class="file-limit">
+        Maksimal ukuran file yang dapat diupload adalah 10 MB
+    </p>
+
+    <footer>
+    © PiCo — Solusi Simpel Buat Kompres Foto
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

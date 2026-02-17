@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <title>PiCo - Kompres Foto</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header>
+    <img src="assets/Logo PiCO.png" alt="Logo PiCO" class="logo-img">
+</header>
+
+<main class="compress-main">
+    <!-- KUALITAS -->
+    <div class="quality-card">
+        <div class="quality-title">
+            <img src="assets/icon kualitas pink.png" alt="icon kualitas">
+            <span>Kualitas Kompresi</span>
+        </div>
+
+        <div class="slider-wrapper">
+            <input
+                type="range"
+                min="10"
+                max="100"
+                value="50"
+                id="qualityRange"
+            />
+        </div>
+
+        <div class="quality-info">
+            <span class="quality-type">Kualitas Rendah</span>
+            <span class="quality-percent" id="qualityValue">50%</span>
+            <span class="quality-type">Kualitas Tinggi</span>
+        </div>
+    </div>
+
+    <!-- NAMA FILE -->
+    <div class="file-card">
+        <p class="file-title">File akan disimpan sebagai</p>
+
+        <input
+            type="text"
+            class="file-input"
+            placeholder="nama_file_terkompres_compress.jpg"
+        />
+
+        <p class="file-hint">Kamu dapat mengubah nama file sebelum diunduh</p>
+    </div>
+
+    <!-- TOMBOL -->
+    <div class="action-row">
+        <button class="compress-btn-main" id="compressBtn">
+            <img src="assets/Icon compress sekarang.png" alt="">
+            <span>Kompres Sekarang</span>
+        </button>
+
+        <button class="cancel-btn">
+            <img src="assets/cancel.png" alt="">
+        </button>
+    </div>
+</main>
+
+<footer>
+    © PiCo — Solusi Simpel Buat Kompres Foto
+</footer>
+
+<script src="compress.js"></script>
+</body>
+</html>

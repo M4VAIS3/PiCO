@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>PiCo - Hasil Kompresi</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="result.css" />
+</head>
+<body>
+
+<header class="header">
+  <img src="assets/Logo PiCO.png" class="logo" alt="PiCo">
+</header>
+
+<main class="container">
+  <!-- PREVIEW -->
+  <section class="compare-wrapper">
+    <div class="image-card">
+      <div class="card-title">
+        <span>Original</span>
+        <span class="badge dark" id="badgeOriginal">-</span>
+      </div>
+      <img id="originalImage" alt="Original">
+    </div>
+
+    <div class="image-card">
+      <div class="card-title">
+        <span>Terkopresi</span>
+        <span class="badge pink" id="badgeCompressed">-</span>
+      </div>
+      <img id="compressedImage" alt="Compressed">
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="info-card">
+    <div class="info-item">
+      <p class="info-label">Ukuran Asli</p>
+      <p class="info-value" id="infoOriginal">-</p>
+    </div>
+
+    <div class="info-item">
+      <p class="info-label">Ukuran Terkompresi</p>
+      <p class="info-value" id="infoCompressed">-</p>
+    </div>
+
+    <div class="info-item">
+      <p class="info-label">Penghematan</p>
+      <p class="info-value" id="infoSaving">-</p>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="download-row">
+    <button class="download-btn" id="downloadBtn">
+      <img src="assets/download.png" alt="">
+      Download Foto Terkompresi
+    </button>
+
+    <button class="close-btn" onclick="window.location.href='index.html'">
+      ✕
+    </button>
+  </section>
+</main>
+
+<script src="result.js"></script>
+</body>
+</html>
