@@ -42,7 +42,7 @@ PiCO menggunakan tiga tahap kompresi:
 ## 📁 Struktur Project
 ```
 pico/
-├── PiCO.py              # Backend Flask API
+├── app.py              # Backend Flask API
 ├── requirements.txt    # Python dependencies
 ├── index.html          # Halaman upload
 ├── compress.html       # Halaman setting kompresi
