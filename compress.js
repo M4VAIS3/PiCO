@@ -6,7 +6,7 @@ const cancelBtn = document.querySelector(".cancel-btn");
 const compressBtn = document.querySelector(".compress-btn-main");
 
 /// ==== KONFIGURASI ====
-const API_URL = "pico-production.up.railway.app/api/compress"; // Ganti dengan URL backend yang benar
+const API_URL = "pico-production.up.railway.app/api/compress";
 
 // ===== LOAD IMAGE FROM INDEXEDDB =====
 let originalImage = null;
