@@ -29,95 +29,108 @@ def validate_image(file_size, filename):
     
     return True
 
-# fungsi untuk resize gambar secara manual menggunakan algoritma Bilinear Interpolation
+# fungsi untuk resize gambar secara otomatis menggunakan algortima bilinear interpolation bawaan PIL agar lebih cepat dan efisien
 def resize_image_manual(img, scale_factor):
-    """Resize gambar secara manual menggunakan algoritma Bilinear Interpolation"""
-    original_width, original_height = img.size # simpan ukuran asli gambar ke dalam variabel
-    # Hitung ukuran baru setelah di-resize kemudian disimpan ke variabel baru
+    """Resize gambar menggunakan algoritma Bilinear Interpolation bawaan PIL yang super cepat"""
+    original_width, original_height = img.size
     new_width = int(original_width * scale_factor)
     new_height = int(original_height * scale_factor)
     
+    # PIL mengeksekusi ini dalam hitungan milidetik
+    return img.resize((new_width, new_height), Image.Resampling.BILINEAR)
+
+    # """Resize gambar secara manual menggunakan algoritma Bilinear Interpolation"""
+    # original_width, original_height = img.size # simpan ukuran asli gambar ke dalam variabel
+    # # Hitung ukuran baru setelah di-resize kemudian disimpan ke variabel baru
+    # new_width = int(original_width * scale_factor)
+    # new_height = int(original_height * scale_factor)
+    
     # Buat image baru dengan ukuran yang sudah di-resize
-    new_img = Image.new(img.mode, (new_width, new_height))
-    pixels = img.load() # load pixel dari gambar asli
-    new_pixels = new_img.load() # load pixel dari gambar baru
+    # new_img = Image.new(img.mode, (new_width, new_height))
+    # pixels = img.load() # load pixel dari gambar asli
+    # new_pixels = new_img.load() # load pixel dari gambar baru
     
     # Algoritma Bilinear Interpolation
-    for y in range(new_height):
-        for x in range(new_width):
+    # for y in range(new_height):
+        # for x in range(new_width):
             # Mapping koordinat baru ke koordinat lama
-            src_x = x * (original_width - 1) / (new_width - 1) if new_width > 1 else 0
-            src_y = y * (original_height - 1) / (new_height - 1) if new_height > 1 else 0
+            #src_x = x * (original_width - 1) / (new_width - 1) if new_width > 1 else 0
+            #src_y = y * (original_height - 1) / (new_height - 1) if new_height > 1 else 0
             
             # Ambil 4 pixel terdekat
-            x1 = int(src_x)
-            y1 = int(src_y)
-            x2 = min(x1 + 1, original_width - 1)
-            y2 = min(y1 + 1, original_height - 1)
+            #x1 = int(src_x)
+            #y1 = int(src_y)
+            #x2 = min(x1 + 1, original_width - 1)
+            #y2 = min(y1 + 1, original_height - 1)
             
             # Hitung bobot untuk interpolasi
-            wx = src_x - x1
-            wy = src_y - y1
+            #wx = src_x - x1
+            #wy = src_y - y1
             
             # Ambil nilai-nilai pixel dan lakukan interpolasi
-            if img.mode == 'RGB':
-                p11 = pixels[x1, y1]
-                p12 = pixels[x1, y2]
-                p21 = pixels[x2, y1]
-                p22 = pixels[x2, y2]
+            #if img.mode == 'RGB':
+                #p11 = pixels[x1, y1]
+                #p12 = pixels[x1, y2]
+                #p21 = pixels[x2, y1]
+                #p22 = pixels[x2, y2]
                 
                 # Interpolasi untuk setiap channel (R, G, B)
-                new_pixel = tuple([
-                    int(
-                        p11[i] * (1 - wx) * (1 - wy) +
-                        p21[i] * wx * (1 - wy) +
-                        p12[i] * (1 - wx) * wy +
-                        p22[i] * wx * wy
-                    )
-                    for i in range(3)
-                ])
-            else:  # Opsi jika gambar dalam mode Grayscale
-                p11 = pixels[x1, y1]
-                p12 = pixels[x1, y2]
-                p21 = pixels[x2, y1]
-                p22 = pixels[x2, y2]
+                #new_pixel = tuple([
+                    #int(
+                        #p11[i] * (1 - wx) * (1 - wy) +
+                        #p21[i] * wx * (1 - wy) +
+                        #p12[i] * (1 - wx) * wy +
+                        #p22[i] * wx * wy
+                    #)
+                    #for i in range(3)
+                #])
+            #else:  # Opsi jika gambar dalam mode Grayscale
+                #p11 = pixels[x1, y1]
+                #p12 = pixels[x1, y2]
+                #p21 = pixels[x2, y1]
+                #p22 = pixels[x2, y2]
                 
-                new_pixel = int(
-                    p11 * (1 - wx) * (1 - wy) +
-                    p21 * wx * (1 - wy) +
-                    p12 * (1 - wx) * wy +
-                    p22 * wx * wy
-                )
+                #new_pixel = int(
+                    #p11 * (1 - wx) * (1 - wy) +
+                    #p21 * wx * (1 - wy) +
+                    #p12 * (1 - wx) * wy +
+                    #p22 * wx * wy
+                #)
             
-            new_pixels[x, y] = new_pixel
+            #new_pixels[x, y] = new_pixel
     
-    return new_img # kembalikan gambar yang sudah di-resize
-
+    #return new_img # kembalikan gambar yang sudah di-resize
+    
 # fungsi untuk color quantization atau mengurangi jumlah warna secara manual
 def quantize_colors(img, levels):
-    """Kuantisasi warna (color quantization) untuk mengurangi jumlah warna pada gambar"""
+    """Kuantisasi warna (color quantization) secara efisien"""
+    # img.quantize akan mengurangi jumlah warna, lalu di-convert kembali ke RGB 
+    # karena format JPEG tidak mendukung mode Palette (P) hasil dari kuantisasi
+    return img.quantize(colors=levels).convert('RGB')
+
+    #"""Kuantisasi warna (color quantization) untuk mengurangi jumlah warna pada gambar"""
     # inisialisasi pixel dan ukuran gambar yang asli ke dalam variabel
-    pixels = img.load()
-    width, height = img.size
+    #pixels = img.load()
+    w#idth, height = img.size
     
     # Hitung step untuk kuantisasi warna
-    step = 256 // levels # 256 karena range warna dari 0-255
+    #step = 256 // levels # 256 karena range warna dari 0-255
     
     # Proses kuantisasi warna
-    for y in range(height):
-        for x in range(width):
-            if img.mode == 'RGB':
-                r, g, b = pixels[x, y]
+    #for y in range(height):
+        #for x in range(width):
+            #if img.mode == 'RGB':
+                # r, g, b = pixels[x, y]
                 # Quantize setiap channel
-                r = (r // step) * step
-                g = (g // step) * step
-                b = (b // step) * step
-                pixels[x, y] = (r, g, b)
-            else:  # Grayscale
-                pixel_value = pixels[x, y]
-                pixels[x, y] = (pixel_value // step) * step
+                #r = (r // step) * step
+                #g = (g // step) * step
+                #b = (b // step) * step
+                #pixels[x, y] = (r, g, b)
+            #else:  # Grayscale
+                #pixel_value = pixels[x, y]
+                #pixels[x, y] = (pixel_value // step) * step
     
-    return img
+    #return img
 
 @app.route('/api/compress', methods=['POST'])
 # fungsi utama untuk melakukan proses kompresi gambar
