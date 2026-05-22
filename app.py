@@ -1,7 +1,7 @@
 # Aplikasi PiCo: Picture Compressor - Solusi Simpel Buat Kompres Foto!
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from PIL import Image
+from PIL import Image, ImageOps
 import os
 import io
 import base64
@@ -169,6 +169,9 @@ def compress_image_api():
         
         # Load gambar dari bytes
         img = Image.open(io.BytesIO(image_bytes))
+
+        # Update: Penerapan EXIF agar hasil foto tidak menjadi miring
+        img = ImageOps.exif_transpose(img)
         
         # Convert ke RGB, jika file gambar dalam mode RGBA (terutama untuk PNG)
         if img.mode == 'RGBA':
@@ -178,10 +181,11 @@ def compress_image_api():
         scale_factor = 0.5 + (quality_percentage / 100) * 0.5 # skala dari 0.5 (50%) sampai 1.0 (100%)
         compressed_img = resize_image_manual(img, scale_factor) # panggil fungsi untuk resize gambar
         
+        # Update: Matikan fungsi kuantisasi warna agar hasil warna pada foto tidak rusak dan tetap bagus
         # 2. Color Quantization: mengurangi jumlah warna berdasarkan kualitas yang diinginkan
-        color_levels = int(4 + (quality_percentage / 100) * 28) # dari 4 levels (10% quality) sampai 32 levels (100% quality)
-        print(f"Melakukan color quantization dengan {color_levels} levels")
-        compressed_img = quantize_colors(compressed_img, color_levels) # panggil fungsi untuk kuantisasi warna
+        # color_levels = int(4 + (quality_percentage / 100) * 28) # dari 4 levels (10% quality) sampai 32 levels (100% quality)
+        # print(f"Melakukan color quantization dengan {color_levels} levels")
+        # compressed_img = quantize_colors(compressed_img, color_levels) # panggil fungsi untuk kuantisasi warna
         
         # 3. Simpan dengan quality JPEG
         jpeg_quality = int(30 + (quality_percentage / 100) * 65)
