@@ -10,7 +10,7 @@ PiCO adalah aplikasi web untuk mengompresi gambar menggunakan algoritma kompresi
 
 - 📤 Upload gambar melalui file explorer
 - 🎚️ Slider pemilihan kualitas kompresi dari 10% hingga 100%
-- ⚙️ Kompresi via backend Python menggunakan algoritma kompresi yang diciptakan secara manual
+- ⚙️ Kompresi via backend Python menggunakan algoritma kompresi Billinear Interpolation
 - 📊 Perbandingan ukuran sebelum & sesudah kompresi
 - 💾 Download hasil kompresi langsung dari browser
 - 🗄️ Penyimpanan sementara menggunakan IndexedDB
